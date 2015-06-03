@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using TurboRango.Dominio;
+using TurboRango.Dominio.Utils;
 
 namespace TurboRango.ImportadorXML
 {
@@ -87,7 +88,7 @@ namespace TurboRango.ImportadorXML
                 let cat = n.Attribute("categoria").Value
                 group n by cat into g
                 where g.Count() == 1
-                select (Categoria)Enum.Parse(typeof(Categoria), g.Key, ignoreCase: true)
+                select g.Key.ToEnum<Categoria>()
                 ).ToList();
         }
 
@@ -100,7 +101,7 @@ namespace TurboRango.ImportadorXML
                 let groupLength = g.Count()
                 where groupLength > 2
                 orderby groupLength descending
-                select (Categoria)Enum.Parse(typeof(Categoria), g.Key, ignoreCase: true)
+                select g.Key.ToEnum<Categoria>()
             ).Take(2).ToList();
         }
 
@@ -109,7 +110,7 @@ namespace TurboRango.ImportadorXML
         {
             return (
                 from n in restaurantes
-                let cat = (Categoria)Enum.Parse(typeof(Categoria), n.Attribute("categoria").Value, ignoreCase: true)
+                let cat = n.Attribute("categoria").Value.ToEnum<Categoria>()
                 where cat == Categoria.Pizzaria
                 group n by n.Element("localizacao").Element("bairro").Value into g
                 orderby g.Count()
@@ -126,6 +127,38 @@ namespace TurboRango.ImportadorXML
                 let totalRestaurantes = restaurantes.Count()
                 select new { Bairro = g.Key, Percentual = Math.Round(Convert.ToDouble(g.Count() * 100) / totalRestaurantes, 2) }
             ).OrderByDescending(g => g.Percentual);
+        }
+        #endregion
+
+        #region exercício 2
+        // 2A Mapear elementos do XML e transformá-los em objetos
+        public IEnumerable<Restaurante> TodosRestaurantes()
+        {
+            return (
+                from n in restaurantes
+                let contato = n.Element("contato")
+                let site = contato != null && contato.Element("site") != null ? contato.Element("site").Value : null
+                let telefone = contato != null && contato.Element("telefone") != null ? contato.Element("telefone").Value : null
+                let localizacao = n.Element("localizacao")
+                select new Restaurante
+                {
+                    Nome = n.Attribute("nome").Value,
+                    Capacidade = Convert.ToInt32(n.Attribute("capacidade").Value),
+                    Categoria = (Categoria)Enum.Parse(typeof(Categoria), n.Attribute("categoria").Value, ignoreCase: true),
+                    Contato = new Contato
+                    {
+                        Site = site,
+                        Telefone = telefone
+                    },
+                    Localizacao = new Localizacao
+                    {
+                        Bairro = localizacao.Element("bairro").Value,
+                        Logradouro = localizacao.Element("logradouro").Value,
+                        Latitude = Convert.ToDouble(localizacao.Element("latitude").Value),
+                        Longitude = Convert.ToDouble(localizacao.Element("longitude").Value)
+                    }
+                }
+                );
         }
         #endregion
     }
