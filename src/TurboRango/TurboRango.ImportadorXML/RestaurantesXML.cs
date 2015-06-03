@@ -22,7 +22,8 @@ namespace TurboRango.ImportadorXML
             this.restaurantes = XDocument.Load(NomeArquivo).Descendants("restaurante");
         }
 
-        public IList<string> ObterNomes()
+        // 1A
+        public IList<string> ObterNomesAsc()
         {
             #region versão não hacker
             /*var resultado = new List<string>();
@@ -42,7 +43,11 @@ namespace TurboRango.ImportadorXML
                 select n.Attribute("nome").Value
                 ).ToList();
         }
+        
+        // 1B (retornar sites dos restaurantes que tem)
+        // public IList<string> ObterSites()
 
+        // 1C
         public double CapacidadeMedia()
         {
             return (from n in restaurantes
@@ -59,6 +64,7 @@ namespace TurboRango.ImportadorXML
             return mad.Max();
         }
 
+        // 1D
         public IList<Restaurante> AgruparPorCategoria()
         {
             var res = from n in restaurantes
@@ -69,5 +75,22 @@ namespace TurboRango.ImportadorXML
                                  };
             throw new NotImplementedException();
         }
+
+        // 1E (retornar categorias que têm apenas um restaurante
+        // public IList<Categoria> ApenasComUmRestaurante()
+
+        // 1F (retornar as duas categorias mais populares (+ 2 restaurantes),
+        // ordenadas por quantidade de restaurantes descendente)
+        // public IList<Categoria> ApenasMaisPopulares()
+
+        // 1G (retornar os 8 bairros com menos pizzarias)
+        // public IList<string> BairrosComMenosPizzarias()
+
+        // 1H (retornar grupos anônimos (chave de agrupamento: bairro,
+        // valor agrupado: percentual) ordenados pelo percentual de forma
+        // descendente. Arredonde o percentual em duas casas de precisão.
+        // Percentual: nº de restaurantes no bairro / nº total de 
+        // restaurantes na cidade
+        // public object AgrupadosPorBairroPercentual()
     }
 }
