@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EF926A69-D74E-4117-9695-5D743A773ED6}</ProjectGuid>
+    <ProjectGuid>{CB89DF68-B8A8-41C2-BA0D-B6C21E1FACD8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TurboRango.Dominio</RootNamespace>

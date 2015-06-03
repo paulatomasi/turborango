@@ -2,9 +2,9 @@
 {
     public class Localizacao
     {
-        internal string Bairro { get; set; }
-        internal double Latitude { get; set; }
-        internal double Longitude { get; set; }
-        internal string Logradouro { get; set; }
+        public string Bairro { get; set; }
+        public double Latitude { get; set; }
+        public string Logradouro { get; set; }
+        public double Longitude { get; set; }
     }
 }

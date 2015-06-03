@@ -2,11 +2,11 @@
 {
     public enum Categoria
     {
-        Comum,
-        CozinhaNatural,
-        CozinhaMexicana,
         Churrascaria,
+        Comum,
         CozinhaJaponesa,
+        CozinhaMexicana,
+        CozinhaNatural,
         Fastfood,
         Pizzaria
     }

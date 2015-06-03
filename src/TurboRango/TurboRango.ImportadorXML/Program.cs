@@ -8,41 +8,28 @@ namespace TurboRango.ImportadorXML
     {
         static void Main(string[] args)
         {
-            #region Exemplos
+            #region pedreiro
+            var oQueEuGoasto = "bacon";
 
-            Restaurante restaurante = new Restaurante();
-
-            //restaurante.
-            //Console.Write(restaurante.Contato.Site);
-            Console.WriteLine( 
-                restaurante.Capacidade.HasValue ? 
-                    restaurante.Capacidade.Value.ToString() : 
-                    "oi"
-                );
-
-            restaurante.Nome = string.Empty + " ";
-
-            Console.WriteLine(restaurante.Nome ?? "Nulo!!!");
-
-            Console.WriteLine( !string.IsNullOrEmpty(restaurante.Nome.Trim()) ? "tem valor" : "não tem valor" );
-
-            var oQueEuGosto = "bacon";
-
-            var texto = String.Format("Eu gosto de {0}", oQueEuGosto);
-            // var texto = String.Format("Eu gosto de \{oQueEuGosto}");
+            var texto = String.Format("Eu gosto de {0}", oQueEuGoasto);
+            Console.WriteLine(texto);
 
             StringBuilder pedreiro = new StringBuilder();
-            pedreiro.AppendFormat("Eu gosto de {0}", oQueEuGosto);
-            pedreiro.Append("!!!!!!");
-
-            object obj = "1";
-            int a = Convert.ToInt32(obj);
-            int convertido = 10;
-            bool conseguiu = Int32.TryParse("1gdfgfd", out convertido);
-            int res = 12 + a;
-
+            pedreiro.AppendFormat("Eu gosto de {0}", oQueEuGoasto);
+            pedreiro.AppendFormat("!!!!!!");
             Console.WriteLine(pedreiro);
+            #endregion
 
+            #region exemplos
+            Restaurante restaurante = new Restaurante();
+            //restaurante.Nome = string.Empty;
+            restaurante.Nome = "";
+            // Se o restaurante tiver capacidade, exibe a capacidade.
+            // Se a capacidade for nula, exibe "oi".
+            Console.WriteLine(restaurante.Capacidade.HasValue ? restaurante.Capacidade.Value.ToString() : "oi");
+            // Operador de coerção nula
+            Console.WriteLine(restaurante.Nome ??  "Nulo!!");
+            Console.WriteLine(! string.IsNullOrEmpty(restaurante.Nome.Trim()) ? "Tem valor" : "Não tem valor");
             #endregion
 
             const string nomeArquivo = "restaurantes.xml";
@@ -52,6 +39,8 @@ namespace TurboRango.ImportadorXML
             var capacidadeMedia = restaurantesXML.CapacidadeMedia();
             var capacidadeMaxima = restaurantesXML.CapacidadeMaxima();
             var porCategoria = restaurantesXML.AgruparPorCategoria();
+
+            Console.ReadLine();
         }
     }
 }
