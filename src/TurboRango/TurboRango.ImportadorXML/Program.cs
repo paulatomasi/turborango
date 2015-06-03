@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using TurboRango.Dominio;
 
@@ -47,7 +48,19 @@ namespace TurboRango.ImportadorXML
             var bairrosPorPercentual = restaurantesXML.AgrupadosPorBairroPercentual();
             #endregion
 
-            Console.ReadLine();
+            #region ADD.NET
+            var connString = @"Data Source=.;Initial Catalog=TurboRango_dev;UID=sa;PWD=feevale";
+            var acessoAoBanco = new CarinhaQueManipulaOBanco(connString);
+            acessoAoBanco.Inserir(new Contato
+            {
+                Site = "www.dogao.gif",
+                Telefone = "55555"
+            });
+
+            IEnumerable<Contato> contatos = acessoAoBanco.GetContatos();
+
+            #endregion
+
         }
     }
 }
