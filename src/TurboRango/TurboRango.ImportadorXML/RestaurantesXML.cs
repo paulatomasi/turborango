@@ -8,21 +8,18 @@ namespace TurboRango.ImportadorXML
 {
     public class RestaurantesXML
     {
-
         public string NomeArquivo { get; private set; }
         IEnumerable<XElement> restaurantes;
 
-        /// <summary>
-        /// Constrói RestaurantesXML a partir do nome de um arquivo.
-        /// </summary>
-        /// <param name="nomeArquivo">Nome do arquivo a ser manipulado.</param>
+        // Construtor
         public RestaurantesXML(string nomeArquivo)
         {
             this.NomeArquivo = nomeArquivo;
             this.restaurantes = XDocument.Load(NomeArquivo).Descendants("restaurante");
         }
 
-        // 1A
+        #region exercício 1
+        // 1A Obter os nomes dos restaurantes
         public IList<string> ObterNomesAsc()
         {
             #region versão não hacker
@@ -39,15 +36,23 @@ namespace TurboRango.ImportadorXML
             return (
                 from n in restaurantes
                 orderby n.Attribute("nome").Value
-                where Convert.ToInt32(n.Attribute("capacidade").Value) < 100
                 select n.Attribute("nome").Value
                 ).ToList();
         }
-        
-        // 1B (retornar sites dos restaurantes que tem)
-        // public IList<string> ObterSites()
 
-        // 1C
+        // 1B Obter os sites dos restaurantes
+        public IList<string> ObterSites()
+        {
+            return (
+                from n in restaurantes
+                let contato = n.Element("contato")
+                let site = contato != null ? contato.Element("site") : null
+                where site != null && !String.IsNullOrEmpty(site.Value)
+                select contato.Element("site").Value
+                ).ToList();
+        }
+
+        // 1C Capacidade média dos restaurantes
         public double CapacidadeMedia()
         {
             return (from n in restaurantes
@@ -64,33 +69,64 @@ namespace TurboRango.ImportadorXML
             return mad.Max();
         }
 
-        // 1D
-        public IList<Restaurante> AgruparPorCategoria()
+        // 1D Agrupa os restauranes por categoria
+        public object AgruparPorCategoria()
         {
-            var res = from n in restaurantes
-                      group n by n.Attribute("categoria").Value into g
-                      select new { Categoria = g.Key, 
-                                   Restaurantes = g.ToList(), 
-                                   SomatorioCapacidades = g.Sum(x => Convert.ToInt32(x.Attribute("capacidade").Value))
-                                 };
-            throw new NotImplementedException();
+            return (
+                from n in restaurantes
+                group n by n.Attribute("categoria").Value into g
+                select new { Categoria = g.Key, Restaurantes = g.ToList() }
+            ).ToList();
         }
 
-        // 1E (retornar categorias que têm apenas um restaurante
-        // public IList<Categoria> ApenasComUmRestaurante()
+        // 1E Lista as categorias com apenas um restaurante
+        public IList<Categoria> ApenasComUmRestaurante() 
+        {
+            return (
+                from n in restaurantes
+                let cat = n.Attribute("categoria").Value
+                group n by cat into g
+                where g.Count() == 1
+                select (Categoria)Enum.Parse(typeof(Categoria), g.Key, ignoreCase: true)
+                ).ToList();
+        }
 
-        // 1F (retornar as duas categorias mais populares (+ 2 restaurantes),
-        // ordenadas por quantidade de restaurantes descendente)
-        // public IList<Categoria> ApenasMaisPopulares()
+        // 1F Lista as duas categorias com mais restaurantes
+        public IList<Categoria> ApenasMaisPopulares()
+        {
+            return (
+                from n in restaurantes
+                group n by n.Attribute("categoria").Value into g
+                let groupLength = g.Count()
+                where groupLength > 2
+                orderby groupLength descending
+                select (Categoria)Enum.Parse(typeof(Categoria), g.Key, ignoreCase: true)
+            ).Take(2).ToList();
+        }
 
-        // 1G (retornar os 8 bairros com menos pizzarias)
-        // public IList<string> BairrosComMenosPizzarias()
+        // 1G Lista os bairros com menos pizzarias
+        public IList<string> BairrosComMenosPizzarias()
+        {
+            return (
+                from n in restaurantes
+                let cat = (Categoria)Enum.Parse(typeof(Categoria), n.Attribute("categoria").Value, ignoreCase: true)
+                where cat == Categoria.Pizzaria
+                group n by n.Element("localizacao").Element("bairro").Value into g
+                orderby g.Count()
+                select g.Key
+            ).Take(8).ToList();
+        }
 
-        // 1H (retornar grupos anônimos (chave de agrupamento: bairro,
-        // valor agrupado: percentual) ordenados pelo percentual de forma
-        // descendente. Arredonde o percentual em duas casas de precisão.
-        // Percentual: nº de restaurantes no bairro / nº total de 
-        // restaurantes na cidade
-        // public object AgrupadosPorBairroPercentual()
+        // 1H Agrupa os bairros por percentual de restaurante
+        public object AgrupadosPorBairroPercentual()
+        {
+            return (
+                from n in restaurantes
+                group n by n.Element("localizacao").Element("bairro").Value into g
+                let totalRestaurantes = restaurantes.Count()
+                select new { Bairro = g.Key, Percentual = Math.Round(Convert.ToDouble(g.Count() * 100) / totalRestaurantes, 2) }
+            ).OrderByDescending(g => g.Percentual);
+        }
+        #endregion
     }
 }

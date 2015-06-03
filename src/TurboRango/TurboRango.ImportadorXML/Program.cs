@@ -28,17 +28,24 @@ namespace TurboRango.ImportadorXML
             // Se a capacidade for nula, exibe "oi".
             Console.WriteLine(restaurante.Capacidade.HasValue ? restaurante.Capacidade.Value.ToString() : "oi");
             // Operador de coerção nula
-            Console.WriteLine(restaurante.Nome ??  "Nulo!!");
-            Console.WriteLine(! string.IsNullOrEmpty(restaurante.Nome.Trim()) ? "Tem valor" : "Não tem valor");
+            Console.WriteLine(restaurante.Nome ?? "Nulo!!");
+            Console.WriteLine(!string.IsNullOrEmpty(restaurante.Nome.Trim()) ? "Tem valor" : "Não tem valor");
             #endregion
 
             const string nomeArquivo = "restaurantes.xml";
 
             var restaurantesXML = new RestaurantesXML(nomeArquivo);
-            var nomes = restaurantesXML.ObterNomesAsc();
+
+            #region exercício 1
+            var obterNomes = restaurantesXML.ObterNomesAsc();
+            var obterSites = restaurantesXML.ObterSites();
             var capacidadeMedia = restaurantesXML.CapacidadeMedia();
-            var capacidadeMaxima = restaurantesXML.CapacidadeMaxima();
-            var porCategoria = restaurantesXML.AgruparPorCategoria();
+            var agruparPorCategoria = restaurantesXML.AgruparPorCategoria();
+            var apenasUmRestaurante = restaurantesXML.ApenasComUmRestaurante();
+            var maisPopulares = restaurantesXML.ApenasMaisPopulares();
+            var bairrosComMenosPizzarias = restaurantesXML.BairrosComMenosPizzarias();
+            var bairrosPorPercentual = restaurantesXML.AgrupadosPorBairroPercentual();
+            #endregion
 
             Console.ReadLine();
         }
