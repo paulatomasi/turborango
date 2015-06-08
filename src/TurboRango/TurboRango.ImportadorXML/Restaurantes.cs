@@ -13,7 +13,7 @@ namespace TurboRango.ImportadorXML
         {
             this.ConnectionString = ConnectionString;
         }
-
+        #region Inserir
         internal void Inserir(Restaurante restaurante)
         {
             using (var connection = new SqlConnection(this.ConnectionString))
@@ -31,7 +31,9 @@ namespace TurboRango.ImportadorXML
                 }
             }
         }
+        #endregion
 
+        #region InserirContato
         private int InserirContato(Contato contato)
         {
             int idCriado;
@@ -52,7 +54,9 @@ namespace TurboRango.ImportadorXML
             }
             return idCriado;
         }
+        #endregion
 
+        #region InserirLocalizacao
         private int InserirLocalizacao(Localizacao localizacao)
         {
             int idCriado;
@@ -75,5 +79,74 @@ namespace TurboRango.ImportadorXML
             }
             return idCriado;
         }
+        #endregion
+
+        #region Remover
+        private int buscarIdContato(int id){
+            using (var connection = new SqlConnection(this.ConnectionString))
+            {
+                connection.Open();
+                string selecionarContatoId = "SELECT Id FROM Contato WHERE EXISTS (SELECT ContatoId FROM Restaurante WHERE Restaurante.Id = @Id AND Restaurante.ContatoId = Contato.Id)";
+                using (var contatoId = new SqlCommand(selecionarContatoId, connection))
+                {
+                    contatoId.Parameters.Add("@Id", SqlDbType.NVarChar).Value = id;
+                    int idContato = Convert.ToInt32(contatoId.ExecuteScalar());
+                    return idContato;
+                }
+            }
+        }
+
+        private int buscarIdLocalizacao(int id)
+        {
+            using (var connection = new SqlConnection(this.ConnectionString))
+            {
+                connection.Open();
+                string selecionarLocalicazaoId = "SELECT Id FROM Localizacao WHERE EXISTS (SELECT LocalizacaoId FROM Restaurante WHERE Restaurante.Id = @Id AND Restaurante.LocalizacaoId = Localizacao.Id)";
+                using (var localizacaoId = new SqlCommand(selecionarLocalicazaoId, connection))
+                {
+                    localizacaoId.Parameters.Add("@Id", SqlDbType.NVarChar).Value = id;
+                    int idLocalizacao = Convert.ToInt32(localizacaoId.ExecuteScalar());
+                    return idLocalizacao;
+                }
+            }
+        }
+
+        internal void Remover(int id)
+        {
+            int idContato = buscarIdContato(id);
+            int idLocalizacao = buscarIdLocalizacao(id);
+
+            using (var connection = new SqlConnection(this.ConnectionString))
+            {
+                connection.Open();
+                string removerTabelaRestaurante = "DELETE FROM Restaurante WHERE Id = @Id";
+                using (var removerRestaurante = new SqlCommand(removerTabelaRestaurante, connection))
+                {
+                    removerRestaurante.Parameters.Add("@Id", SqlDbType.NVarChar).Value = id;
+                    removerRestaurante.ExecuteNonQuery();
+                }
+
+                string removerTabelaContato = "DELETE FROM Contato WHERE Id = @Id";
+                using (var removerContato = new SqlCommand(removerTabelaContato, connection))
+                {
+                    removerContato.Parameters.Add("@Id", SqlDbType.NVarChar).Value = id;
+                    removerContato.ExecuteNonQuery();
+                }
+
+                string removerTabelaLocalizacao = "DELETE FROM Localizacao WHERE Id = @Id";
+                using (var removerLocalizacao = new SqlCommand(removerTabelaLocalizacao, connection))
+                {
+                    removerLocalizacao.Parameters.Add("@Id", SqlDbType.NVarChar).Value = id;
+                    removerLocalizacao.ExecuteNonQuery();
+                }
+            }
+        #endregion
+
+            #region Consulta
+            #endregion
+
+            #region Atualizar
+            #endregion
+        }
     }
-}
+} 
