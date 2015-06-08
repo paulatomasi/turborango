@@ -33,26 +33,29 @@ namespace TurboRango.ImportadorXML
                 }
             }
         }
-
         internal IEnumerable<Contato> GetContatos()
         {
+            List<Contato> contatos = new List<Contato>();
             using (var connection = new SqlConnection(this.connectionString))
             {
-                string comandoSQL = "SELECT [Site], [Telefone] FROM [dbo].[Contato]";
-                using (var lerContato = new SqlCommand(comandoSQL, connection))
+                string comandoSQL = "SELECT [Site], [Telefone] FROM [dbo].[Contato](nolock)";
+                using (var buscaContatos = new SqlCommand(comandoSQL, connection))
                 {
                     connection.Open();
-                    var reader = lerContato.ExecuteReader();
+                    var reader = buscaContatos.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        // indice do retorno das colunas
-                        string site = reader.GetString(0);
-                        string telefone = reader.GetString(1);
+                        contatos.Add(new Contato
+                        {
+                            Site = reader.GetString(0),
+                            Telefone = reader.GetString(1),
+                        });
+
                     }
                 }
+                return contatos;
             }
-            throw new NotImplementedException();
         }
     }
 }
