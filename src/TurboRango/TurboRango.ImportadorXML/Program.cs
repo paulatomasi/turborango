@@ -61,7 +61,7 @@ namespace TurboRango.ImportadorXML
 
             #endregion
 
-            #region tema
+            #region tema ex1
             var restaurantes = new Restaurantes(connString);
             restaurantes.Inserir(new Restaurante
             {
@@ -84,6 +84,13 @@ namespace TurboRango.ImportadorXML
 
             #endregion
 
+            #region tema ex2
+            var todosRestaurantes = restaurantesXML.TodosRestaurantes();
+            foreach (var restauranteAtual in todosRestaurantes)
+            {
+                restaurantes.Inserir(restauranteAtual);
+            }
+            #endregion
         }
     }
 }
