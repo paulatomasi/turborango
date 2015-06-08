@@ -49,7 +49,7 @@ namespace TurboRango.ImportadorXML
             #endregion
 
             #region ADD.NET
-            var connString = @"Data Source=.\SQLEXPRESS;Initial Catalog=TurboRango_dev;Integrated Security=True;"; 
+            var connString = @"Data Source=.\SQLEXPRESS;Initial Catalog=TurboRango_dev;Integrated Security=True;";
             var acessoAoBanco = new CarinhaQueManipulaOBanco(connString);
             acessoAoBanco.Inserir(new Contato
             {
@@ -61,8 +61,8 @@ namespace TurboRango.ImportadorXML
 
             #endregion
 
-            #region tema ex1
             var restaurantes = new Restaurantes(connString);
+            #region tema ex1
             restaurantes.Inserir(new Restaurante
             {
                 Nome = "Tiririca",
