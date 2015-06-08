@@ -49,7 +49,7 @@ namespace TurboRango.ImportadorXML
             #endregion
 
             #region ADD.NET
-            var connString = @"Data Source=.;Initial Catalog=TurboRango_dev;UID=sa;PWD=feevale";
+            var connString = @"Data Source=.\SQLEXPRESS;Initial Catalog=TurboRango_dev;Integrated Security=True;"; 
             var acessoAoBanco = new CarinhaQueManipulaOBanco(connString);
             acessoAoBanco.Inserir(new Contato
             {
@@ -58,6 +58,29 @@ namespace TurboRango.ImportadorXML
             });
 
             IEnumerable<Contato> contatos = acessoAoBanco.GetContatos();
+
+            #endregion
+
+            #region tema
+            var restaurantes = new Restaurantes(connString);
+            restaurantes.Inserir(new Restaurante
+            {
+                Nome = "Tiririca",
+                Capacidade = 50,
+                Categoria = Categoria.Fastfood,
+                Contato = new Contato
+                {
+                    Site = "http://github.com/tiririca",
+                    Telefone = "5555 5555"
+                },
+                Localizacao = new Localizacao
+                {
+                    Bairro = "Vila Nova",
+                    Logradouro = "ERS 239, 2755",
+                    Latitude = -29.6646122,
+                    Longitude = -51.1188255
+                }
+            });
 
             #endregion
 
