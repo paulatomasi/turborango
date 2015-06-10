@@ -1,7 +1,7 @@
 ﻿@using TurboRango.Web.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Log in";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -49,11 +49,6 @@
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
                     </p>*@
             }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>

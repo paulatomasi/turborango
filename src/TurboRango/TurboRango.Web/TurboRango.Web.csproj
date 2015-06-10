@@ -7,13 +7,13 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{92D47EF1-0CF9-41AF-9489-BCC8FEF1613B}</ProjectGuid>
+    <ProjectGuid>{0C677196-019D-4E87-97DF-F60FE598162D}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TurboRango.Web</RootNamespace>
     <AssemblyName>TurboRango.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -165,13 +165,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506081927050_InitialCreate.cs" />
-    <Compile Include="Migrations\201506081927050_InitialCreate.Designer.cs">
-      <DependentUpon>201506081927050_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201506081923469_InitialCreate.cs" />
+    <Compile Include="Migrations\201506081923469_InitialCreate.Designer.cs">
+      <DependentUpon>201506081923469_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506082002033_CriarEntidades.cs" />
-    <Compile Include="Migrations\201506082002033_CriarEntidades.Designer.cs">
-      <DependentUpon>201506082002033_CriarEntidades.cs</DependentUpon>
+    <Compile Include="Migrations\201506081947023_CriarEntidades.cs" />
+    <Compile Include="Migrations\201506081947023_CriarEntidades.Designer.cs">
+      <DependentUpon>201506081947023_CriarEntidades.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -214,7 +214,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -252,16 +251,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TurboRango.Dominio\TurboRango.Dominio.csproj">
-      <Project>{cb89df68-b8a8-41c2-ba0d-b6c21e1facd8}</Project>
+      <Project>{ef926a69-d74e-4117-9695-5d743a773ed6}</Project>
       <Name>TurboRango.Dominio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506081927050_InitialCreate.resx">
-      <DependentUpon>201506081927050_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506081923469_InitialCreate.resx">
+      <DependentUpon>201506081923469_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506082002033_CriarEntidades.resx">
-      <DependentUpon>201506082002033_CriarEntidades.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506081947023_CriarEntidades.resx">
+      <DependentUpon>201506081947023_CriarEntidades.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -280,9 +279,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55693</DevelopmentServerPort>
+          <DevelopmentServerPort>18137</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55693/</IISUrl>
+          <IISUrl>http://localhost:26105/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
