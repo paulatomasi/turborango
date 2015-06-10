@@ -11,7 +11,6 @@ using TurboRango.Web.Models;
 
 namespace TurboRango.Web.Controllers
 {
-    [Authorize]
     public class RestaurantesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -95,6 +94,7 @@ namespace TurboRango.Web.Controllers
         }
 
         // GET: Restaurantes/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,6 +112,7 @@ namespace TurboRango.Web.Controllers
         // POST: Restaurantes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Restaurante restaurante = db.Restaurantes.Find(id);
@@ -125,8 +126,7 @@ namespace TurboRango.Web.Controllers
         {
             var todos = db.Restaurantes.ToList();
 
-            return Json(
-                todos, JsonRequestBehavior.AllowGet);
+            return Json(todos, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

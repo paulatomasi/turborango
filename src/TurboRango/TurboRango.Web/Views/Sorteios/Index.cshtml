@@ -1,14 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Sorteio";
 }
 
 <h2>Com fome?</h2>
 
-<h3>Sorteando entre @ViewBag.QtdRestaurantes restaurantes...</h3>
+<h3>@ViewBag.QtdRestaurantes</h3>
 
-@*<h3>@TurboRango.Web.Controllers.SorteiosController.GetIluminismo()</h3>*@
-
-<script>
-    var qtdRestaurante = @ViewBag.QtdRestaurantes;
-    alert(qtdRestaurante);
-</script>
+    <script>
+        var qtdRestaurantes = db.Restaurantes.Count();
+        alert(qtdRestaurantes);
+    </script>

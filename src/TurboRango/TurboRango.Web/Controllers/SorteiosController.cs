@@ -14,7 +14,6 @@ namespace TurboRango.Web.Controllers
         public ActionResult Index()
         {
             ViewBag.QtdRestaurantes = db.Restaurantes.Count();
-
             return View();
         }
     }
