@@ -1,24 +1,14 @@
-﻿@using TurboRango.Web.Controllers;
-@{
+﻿@{
     ViewBag.Title = "Index";
-    //ViewBag.QtdRestaurantes += 1;
 }
 
 <h2>Com fome?</h2>
 
 <h3>Sorteando entre @ViewBag.QtdRestaurantes restaurantes...</h3>
-@*<h3>@(SorteiosController.GetIluminismo() + 1)</h3>*@
 
-@section Scripts {
+@*<h3>@TurboRango.Web.Controllers.SorteiosController.GetIluminismo()</h3>*@
+
 <script>
-    var qtdRestaurantes = @ViewBag.QtdRestaurantes;
-    //alert(qtdRestaurantes);
-
-    $.get('@Url.Action("Restaurantes", "Restaurantes")')
-        .done(function(response) {
-            response.restaurantes.forEach(function(r) {
-                console.log(r.Localizacao);
-            });
-        });
+    var qtdRestaurante = @ViewBag.QtdRestaurantes;
+    alert(qtdRestaurante);
 </script>
-}
