@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Sorteio";
 }
 
@@ -7,3 +6,7 @@
 
 <h3>@ViewBag.QtdRestaurantes</h3>
 
+    <script>
+        var qtdRestaurantes = db.Restaurantes.Count();
+        alert(qtdRestaurantes);
+    </script>
