@@ -18,8 +18,10 @@ namespace TurboRango.Web.Controllers
         // GET: Restaurantes
         public ActionResult Index()
         {
-            var model = db.Restaurantes.Include(x => x.Localizacao).Include(x => x.Contato).ToList();
-            return View(model);
+            var restaurantes = db.Restaurantes
+                .Include(x => x.Contato)
+                .Include(x => x.Localizacao);
+            return View(restaurantes.ToList());
         }
 
         // GET: Restaurantes/Details/5
@@ -29,7 +31,7 @@ namespace TurboRango.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurante restaurante = db.Restaurantes.Include(x => x.Localizacao).Include(x => x.Contato).FirstOrDefault(x => x.Id == id);
+            Restaurante restaurante = db.Restaurantes.Find(id);
             if (restaurante == null)
             {
                 return HttpNotFound();
@@ -48,7 +50,7 @@ namespace TurboRango.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Capacidade,Nome,Categoria,Contato,Localizacao")] Restaurante restaurante)
+        public ActionResult Create([Bind(Include = "Id,Capacidade,Nome,Categoria")] Restaurante restaurante)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +69,7 @@ namespace TurboRango.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurante restaurante = db.Restaurantes.Include(x => x.Localizacao).Include(x => x.Contato).FirstOrDefault(x => x.Id == id);
+            Restaurante restaurante = db.Restaurantes.Find(id);
             if (restaurante == null)
             {
                 return HttpNotFound();
@@ -92,6 +94,7 @@ namespace TurboRango.Web.Controllers
         }
 
         // GET: Restaurantes/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,6 +112,7 @@ namespace TurboRango.Web.Controllers
         // POST: Restaurantes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Restaurante restaurante = db.Restaurantes.Find(id);
@@ -124,6 +128,20 @@ namespace TurboRango.Web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [AllowAnonymous]
+        public JsonResult Restaurantes()
+        {
+            var todos = db.Restaurantes
+                .Include(_ => _.Localizacao)
+                .ToList();
+
+            return Json(new
+            {
+                restaurantes = todos,
+                camigoal = DateTime.Now
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }
