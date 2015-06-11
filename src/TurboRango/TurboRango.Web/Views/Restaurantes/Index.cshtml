@@ -1,4 +1,7 @@
-﻿@model IEnumerable<TurboRango.Dominio.Restaurante>
+﻿@using TurboRango.Dominio
+@using TurboRango.Dominio.Utils
+
+@model IEnumerable<Restaurante>
 
 @{
     ViewBag.Title = "Index";
@@ -12,38 +15,57 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Capacidade)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Categoria)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Capacidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contato.Site)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contato.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localizacao.Logradouro)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Capacidade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-    <script>
-        var varDoJs = "@ViewBag.FlagDoJuarez";
-    </script>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td> 
+                @{
+                    var enumDescription = item.Categoria.GetDescription<Categoria>();
+                }
+                @Html.DisplayFor(modelItem => enumDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contato.Site)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contato.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localizacao.Logradouro) |
+                @Html.DisplayFor(modelItem => item.Localizacao.Bairro)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
