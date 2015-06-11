@@ -252,6 +252,10 @@
     <Content Include="Views\Restaurantes\Edit.cshtml" />
     <Content Include="Views\Restaurantes\Index.cshtml" />
     <Content Include="Views\Sorteios\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Contato.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Localizacao.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Contato.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Localizacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
