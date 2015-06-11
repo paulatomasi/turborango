@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Avaliacao.cs" />
     <Compile Include="Categoria.cs" />
     <Compile Include="Contato.cs" />
     <Compile Include="Entidade.cs" />

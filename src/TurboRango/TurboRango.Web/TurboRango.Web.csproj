@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AvaliacaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RestaurantesController.cs" />
@@ -173,6 +174,10 @@
     <Compile Include="Migrations\201506081947023_CriarEntidades.cs" />
     <Compile Include="Migrations\201506081947023_CriarEntidades.Designer.cs">
       <DependentUpon>201506081947023_CriarEntidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506111720091_Avaliacao.cs" />
+    <Compile Include="Migrations\201506111720091_Avaliacao.Designer.cs">
+      <DependentUpon>201506111720091_Avaliacao.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -250,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Avaliacao\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -270,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506081947023_CriarEntidades.resx">
       <DependentUpon>201506081947023_CriarEntidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506111720091_Avaliacao.resx">
+      <DependentUpon>201506111720091_Avaliacao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
