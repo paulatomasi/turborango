@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AvaliacaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RestaurantesController.cs" />
@@ -247,6 +248,11 @@
     <Content Include="Views\Restaurantes\Edit.cshtml" />
     <Content Include="Views\Restaurantes\Index.cshtml" />
     <Content Include="Views\Sorteios\Index.cshtml" />
+    <Content Include="Views\Avaliacao\Index.cshtml" />
+    <Content Include="Views\Avaliacao\Create.cshtml" />
+    <Content Include="Views\Avaliacao\Details.cshtml" />
+    <Content Include="Views\Avaliacao\Edit.cshtml" />
+    <Content Include="Views\Avaliacao\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
