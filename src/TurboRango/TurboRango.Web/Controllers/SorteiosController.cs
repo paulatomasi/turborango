@@ -10,10 +10,18 @@ namespace TurboRango.Web.Controllers
     public class SorteiosController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+
+        public static int GetIluminismo()
+        {
+            var noonz = 33;
+            return noonz;
+        }
+
         // GET: Sorteios
         public ActionResult Index()
         {
             ViewBag.QtdRestaurantes = db.Restaurantes.Count();
+
             return View();
         }
     }
