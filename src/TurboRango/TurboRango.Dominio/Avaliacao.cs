@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TurboRango.Dominio
 {
-    class Avaliacao : Entidade
+    public class Avaliacao : Entidade
     {
         public string Login { get; set; }
         public double Nota { get; set; }
