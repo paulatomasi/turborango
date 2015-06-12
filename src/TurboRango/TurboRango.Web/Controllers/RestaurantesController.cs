@@ -80,13 +80,12 @@ namespace TurboRango.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Capacidade,Nome,Categoria,Contato,Localizacao")] Restaurante restaurante)
+        public ActionResult Edit([Bind(Include = "Id,Capacidade,Nome,Categoria,Contato, Localizacao")] Restaurante restaurante)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(restaurante).State = EntityState.Modified;
                 db.Entry(restaurante.Contato).State = EntityState.Modified;
-                db.Entry(restaurante.Localizacao).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
