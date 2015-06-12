@@ -91,6 +91,7 @@ namespace TurboRango.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                avaliacao.Data = DateTime.Now;
                 db.Entry(avaliacao).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", "Avaliacaos");
