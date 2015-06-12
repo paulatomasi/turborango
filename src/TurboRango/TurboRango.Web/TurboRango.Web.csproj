@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201506120130363_AlterarAvaliacao2.Designer.cs">
       <DependentUpon>201506120130363_AlterarAvaliacao2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506120417007_UltimassAlteracoes.cs" />
+    <Compile Include="Migrations\201506120417007_UltimassAlteracoes.Designer.cs">
+      <DependentUpon>201506120417007_UltimassAlteracoes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -301,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506120130363_AlterarAvaliacao2.resx">
       <DependentUpon>201506120130363_AlterarAvaliacao2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506120417007_UltimassAlteracoes.resx">
+      <DependentUpon>201506120417007_UltimassAlteracoes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

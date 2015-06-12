@@ -39,7 +39,7 @@ namespace TurboRango.Web.Controllers
         }
 
         // GET: Avaliacao/Create
-        public ActionResult Create(int? id)
+        public ActionResult Create(int id)
         {
             return View();
         }
@@ -49,18 +49,20 @@ namespace TurboRango.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(int? id, [Bind(Include = "Id,Nota")] Avaliacao avaliacao)
         {
-            avaliacao.Login = User.Identity.GetUserName();
+            avaliacao.Login = User.Identity.Name;
             avaliacao.Restaurante = db.Restaurantes.Find(id);
             avaliacao.Data = DateTime.Now;
             if (ModelState.IsValid)
             {
-                if (db.Avaliacaos.Where(x => x.Login == User.Identity.GetUserName() && x.Restaurante.Id == id).Count() == 0)
+                if (db.Avaliacaos.Where(x => x.Restaurante.Id == id && x.Login == User.Identity.Name).Count() == 0)
                 {
                     db.Avaliacaos.Add(avaliacao);
-                } else 
-                    {
-                        db.Entry(avaliacao).State = EntityState.Modified;
-                    } 
+                }
+                else
+                {
+                    db.Entry(avaliacao).State = EntityState.Modified;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index", "Avaliacaos");
             }
