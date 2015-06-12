@@ -1,9 +1,21 @@
-﻿body {
+﻿.corlegal, .btn:hover,
+.btn:focus {
+  background-color: #1abc9c;
+  border-color: #1abc9c;
+  color: #ecf0f1;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
     font-family: 'Open Sans', sans-serif;
+    background-color: #ecf0f1;
 }
 
+.fonte
+{
+    color: #ecf0f1 !important
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

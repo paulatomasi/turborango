@@ -1,19 +1,16 @@
 ﻿@using TurboRango.Web.Controllers;
 @{
     ViewBag.Title = "Index";
-    //ViewBag.QtdRestaurantes += 1;
 }
 
 <h2>Com fome?</h2>
 
 <h3 id="feedback">Sorteando entre @ViewBag.QtdRestaurantes restaurantes...</h3>
-@*<h3>@(SorteiosController.GetIluminismo() + 1)</h3>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/haversine")
     <script>
         var qtdRestaurantes = @ViewBag.QtdRestaurantes;
-        //alert(qtdRestaurantes);
 
         var feedback = $('#feedback');
 
