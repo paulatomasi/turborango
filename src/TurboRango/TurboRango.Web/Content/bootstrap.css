@@ -80,7 +80,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1em;
 }
 
@@ -288,11 +288,11 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #ecf0f1;
 }
 
 input,
@@ -4366,7 +4366,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-brand {
-  color: #777777;
+  color: #2ecc71;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -4376,7 +4376,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-text {
-  color: #777777;
+  color: #2ecc71;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -4478,12 +4478,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
-  border-color: #080808;
+  background-color: #1abc9c;
+  border-color: #1abc9c;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #999999;
+  color: #ecf0f1;
 }
 
 .navbar-inverse .navbar-brand:hover,
@@ -4493,7 +4493,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-text {
-  color: #999999;
+  color: ##ecf0f1;
 }
 
 .navbar-inverse .navbar-nav > li > a {
