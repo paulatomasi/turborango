@@ -1,8 +1,14 @@
-﻿.corlegal, .btn:hover,
-.btn:focus {
+﻿.corlegal, .btn:hover, .btn:focus
+{
   background-color: #1abc9c;
   border-color: #1abc9c;
   color: #ecf0f1;
+}
+
+.fundolegal
+{
+  background-color: #ecf0f1;
+  border-color: #ecf0f1;
 }
 
 body {
