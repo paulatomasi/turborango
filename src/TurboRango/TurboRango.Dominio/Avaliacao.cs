@@ -9,8 +9,8 @@ namespace TurboRango.Dominio
     public class Avaliacao : Entidade
     {
         public string Login { get; set; }
-        public int Nota { get; set;  }
-        public DateTime Data { get; set;  }
+        public int Nota { get; set; }
         public virtual Restaurante Restaurante { get; set; }
+        public DateTime Data { get; set;  }
     }
 }

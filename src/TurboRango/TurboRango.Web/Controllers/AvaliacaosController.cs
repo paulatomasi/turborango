@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using TurboRango.Dominio;
 using TurboRango.Web.Models;
+using Microsoft.AspNet.Identity;
 
 namespace TurboRango.Web.Controllers
 {
@@ -25,7 +26,16 @@ namespace TurboRango.Web.Controllers
         // GET: Avaliacao/Details/5
         public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Avaliacao avaliacao = db.Avaliacaos.Find(id);
+            if (avaliacao == null)
+            {
+                return HttpNotFound();
+            }
+            return View(avaliacao);
         }
 
         // GET: Avaliacao/Create
@@ -39,61 +49,86 @@ namespace TurboRango.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(int? id, [Bind(Include = "Id,Nota")] Avaliacao avaliacao)
         {
-            try
+            avaliacao.Login = User.Identity.GetUserName();
+            avaliacao.Restaurante = db.Restaurantes.Find(id);
+            avaliacao.Data = DateTime.Now;
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (db.Avaliacaos.Where(x => x.Login == User.Identity.GetUserName() && x.Restaurante.Id == id).Count() == 0)
+                {
+                    db.Avaliacaos.Add(avaliacao);
+                } else 
+                    {
+                        db.Entry(avaliacao).State = EntityState.Modified;
+                    } 
+                db.SaveChanges();
+                return RedirectToAction("Index", "Avaliacaos");
             }
-            catch
-            {
-                return View();
-            }
+            return View(avaliacao);
         }
 
         // GET: Avaliacao/Edit/5
         public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Avaliacao avaliacao = db.Avaliacaos.Find(id);
+            if (avaliacao == null)
+            {
+                return HttpNotFound();
+            }
+            return View(avaliacao);
         }
 
         // POST: Avaliacao/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Login,Nota,Data")] Avaliacao avaliacao)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                db.Entry(avaliacao).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Avaliacaos");
             }
-            catch
-            {
-                return View();
-            }
+            return View(avaliacao);
         }
 
         // GET: Avaliacao/Delete/5
         public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Avaliacao avaliacao = db.Avaliacaos.Find(id);
+            if (avaliacao == null)
+            {
+                return HttpNotFound();
+            }
+            return View(avaliacao);
         }
 
         // POST: Avaliacao/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            Avaliacao avaliacao = db.Avaliacaos.Find(id);
+            db.Avaliacaos.Remove(avaliacao);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Avaliacaos");
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
