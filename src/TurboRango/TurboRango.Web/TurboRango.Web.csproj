@@ -159,7 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AvaliacaoController.cs" />
+    <Compile Include="Controllers\AvaliacaosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RestaurantesController.cs" />
@@ -178,6 +178,14 @@
     <Compile Include="Migrations\201506111720091_Avaliacao.cs" />
     <Compile Include="Migrations\201506111720091_Avaliacao.Designer.cs">
       <DependentUpon>201506111720091_Avaliacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506120120312_AlterarAvaliacao.cs" />
+    <Compile Include="Migrations\201506120120312_AlterarAvaliacao.Designer.cs">
+      <DependentUpon>201506120120312_AlterarAvaliacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506120130363_AlterarAvaliacao2.cs" />
+    <Compile Include="Migrations\201506120130363_AlterarAvaliacao2.Designer.cs">
+      <DependentUpon>201506120130363_AlterarAvaliacao2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -256,10 +264,10 @@
     <Content Include="Views\Shared\DisplayTemplates\Localizacao.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Contato.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Localizacao.cshtml" />
+    <Content Include="Views\Avaliacaos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Avaliacao\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -283,6 +291,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506111720091_Avaliacao.resx">
       <DependentUpon>201506111720091_Avaliacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506120120312_AlterarAvaliacao.resx">
+      <DependentUpon>201506120120312_AlterarAvaliacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506120130363_AlterarAvaliacao2.resx">
+      <DependentUpon>201506120130363_AlterarAvaliacao2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
