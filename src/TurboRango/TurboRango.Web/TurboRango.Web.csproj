@@ -265,6 +265,10 @@
     <Content Include="Views\Shared\EditorTemplates\Contato.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Localizacao.cshtml" />
     <Content Include="Views\Avaliacaos\Index.cshtml" />
+    <Content Include="Views\Avaliacaos\Details.cshtml" />
+    <Content Include="Views\Avaliacaos\Create.cshtml" />
+    <Content Include="Views\Avaliacaos\Edit.cshtml" />
+    <Content Include="Views\Avaliacaos\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
