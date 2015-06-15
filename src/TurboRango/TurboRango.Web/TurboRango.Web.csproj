@@ -273,7 +273,6 @@
     <Content Include="Views\Avaliacaos\Create.cshtml" />
     <Content Include="Views\Avaliacaos\Edit.cshtml" />
     <Content Include="Views\Avaliacaos\Delete.cshtml" />
-    <Content Include="Views\Sorteios\Class1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
