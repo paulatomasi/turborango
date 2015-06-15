@@ -20,7 +20,7 @@ namespace TurboRango.Web.Controllers
         // GET: Avaliacaos
         public ActionResult Index(int? id)
         {
-            return View(db.Avaliacaos.ToList());
+            return View(db.Avaliacaos.Include(x => x.Restaurante).ToList());
         }
 
         // GET: Avaliacao/Details/5
